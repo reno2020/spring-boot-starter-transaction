@@ -1,20 +1,95 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.throwable</groupId>
-  <artifactId>spring-boot-starter-transaction</artifactId>
-  <packaging>pom</packaging>
-  <version>1.0-SNAPSHOT</version>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.throwable</groupId>
+    <artifactId>spring-boot-starter-transaction</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
     <modules>
         <module>spring-boot-starter-transaction-tcc</module>
-        <module>spring-boot-starter-transaction-ons</module>
+        <module>spring-boot-starter-transaction-ons-server</module>
         <module>spring-boot-starter-transaction-ons-console</module>
+        <module>spring-boot-starter-transaction-ons-core</module>
+        <module>spring-boot-starter-transaction-ons-protocol</module>
+        <module>spring-boot-starter-transaction-ons-orm</module>
     </modules>
     <name>spring-boot-starter-transaction</name>
-  <dependencies>
+    <properties>
+        <jdk.version>1.8</jdk.version>
+        <encoding>UTF-8</encoding>
+        <lombok.version>1.16.18</lombok.version>
+        <springboot.version>1.5.7.RELEASE</springboot.version>
+        <fastjson.version>1.2.38</fastjson.version>
 
-  </dependencies>
-  <build>
-    <finalName>spring-boot-starter-transaction</finalName>
-  </build>
+        <!--maven plugins-->
+        <compiler.plugin.version>3.6.2</compiler.plugin.version>
+        <source.plugin.version>3.0.1</source.plugin.version>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${springboot.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <finalName>spring-boot-starter-transaction</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${compiler.plugin.version}</version>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                    <encoding>${encoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${source.plugin.version}</version>
+                <configuration>
+                    <attach>true</attach>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
