@@ -20,7 +20,7 @@
         <dependency>
             <groupId>org.throwable</groupId>
             <artifactId>spring-boot-starter-doge-mapper</artifactId>
-            <version>1.0.RELEASE</version>
+            <version>1.0.0.RELEASE</version>
         </dependency>
 
     </dependencies>

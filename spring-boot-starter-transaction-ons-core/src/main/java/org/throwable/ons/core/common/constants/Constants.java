@@ -10,6 +10,8 @@ public interface Constants {
 
     String ENCODING = "UTF-8";
 
+    String DETE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
+
     String QUEUE_KEY = "queue";
 
     String EXCHANGE_KEY = "exchange";

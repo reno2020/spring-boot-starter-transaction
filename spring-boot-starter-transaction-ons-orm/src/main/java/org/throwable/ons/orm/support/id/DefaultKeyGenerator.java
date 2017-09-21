@@ -14,7 +14,7 @@
  * limitations under the License.
  * </p>
  */
-package org.throwable.ons.core.support.id;
+package org.throwable.ons.orm.support.id;
 
 
 import com.google.common.base.Preconditions;

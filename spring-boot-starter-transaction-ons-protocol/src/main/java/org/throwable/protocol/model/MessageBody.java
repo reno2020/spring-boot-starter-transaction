@@ -1,9 +1,9 @@
 package org.throwable.protocol.model;
 
-import lombok.NonNull;
-import org.springframework.amqp.core.Message;
-import org.springframework.amqp.core.MessageProperties;
+import org.throwable.protocol.utils.FastJsonUtils;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,45 +14,39 @@ import java.util.Map;
  */
 public final class MessageBody {
 
-    private MessageProperties messageProperties;
-    private Map<String, Object> staticAttributes;
-    private Object body;
+	private Map<String, Object> staticAttributes;
+	private List<DestinationMessagePair> contents;
 
-    public MessageBody(@NonNull Message message){
-        this.messageProperties = message.getMessageProperties();
-        this.body = new String(message.getBody());
-    }
+	public MessageBody() {
+		staticAttributes = new HashMap<>();
+	}
 
-    public MessageBody addAttribute(String key,Object value){
-        staticAttributes.putIfAbsent(key, value);
-        return this;
-    }
+	public MessageBody addAttribute(String key, Object value) {
+		staticAttributes.putIfAbsent(key, value);
+		return this;
+	}
 
-    public Object getAttribute(String key){
-        return staticAttributes.get(key);
-    }
+	public Object getAttribute(String key) {
+		return staticAttributes.get(key);
+	}
 
-    public MessageProperties getMessageProperties() {
-        return messageProperties;
-    }
+	public Map<String, Object> getStaticAttributes() {
+		return staticAttributes;
+	}
 
-    public void setMessageProperties(MessageProperties messageProperties) {
-        this.messageProperties = messageProperties;
-    }
+	public void setStaticAttributes(Map<String, Object> staticAttributes) {
+		this.staticAttributes = staticAttributes;
+	}
 
-    public Map<String, Object> getStaticAttributes() {
-        return staticAttributes;
-    }
+	public List<DestinationMessagePair> getContents() {
+		return contents;
+	}
 
-    public void setStaticAttributes(Map<String, Object> staticAttributes) {
-        this.staticAttributes = staticAttributes;
-    }
+	public void setContents(List<DestinationMessagePair> contents) {
+		this.contents = contents;
+	}
 
-    public Object getBody() {
-        return body;
-    }
-
-    public void setBody(Object body) {
-        this.body = body;
-    }
+	public byte[] toRabbitmqMessageBodyBytes() {
+		return FastJsonUtils.toJsonString(this).getBytes();
+	}
 }

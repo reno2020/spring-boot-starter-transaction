@@ -1,4 +1,4 @@
-package org.throwable.ons.core.support.id;
+package org.throwable.ons.orm.support.id;
 
 /*
  * Copyright 1999-2015 dangdang.com.
