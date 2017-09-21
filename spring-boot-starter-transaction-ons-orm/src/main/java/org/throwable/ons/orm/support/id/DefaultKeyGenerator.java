@@ -33,6 +33,7 @@ public class DefaultKeyGenerator implements KeyGenerator {
     private static final long EPOCH;
 
     private static final String WORKER_ID_KEY = "key.generator.worker.id";
+
     private static final long DEFAULT_WORKER_ID = 1;
 
     private static final long SEQUENCE_BITS = 12L;

@@ -12,11 +12,13 @@
         <module>spring-boot-starter-transaction-ons-core</module>
         <module>spring-boot-starter-transaction-ons-protocol</module>
         <module>spring-boot-starter-transaction-ons-orm</module>
+        <module>spring-boot-starter-transaction-ons-client</module>
     </modules>
     <name>spring-boot-starter-transaction</name>
     <properties>
         <jdk.version>1.8</jdk.version>
         <encoding>UTF-8</encoding>
+        <project.version>1.0-SNAPSHOT</project.version>
         <lombok.version>1.16.18</lombok.version>
         <springboot.version>1.5.7.RELEASE</springboot.version>
         <fastjson.version>1.2.38</fastjson.version>
@@ -58,6 +60,12 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.throwable</groupId>
+                <artifactId>spring-boot-starter-transaction-ons-protocol</artifactId>
+                <version>${project.version}</version>
             </dependency>
 
         </dependencies>

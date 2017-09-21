@@ -10,6 +10,9 @@ import org.throwable.ons.core.common.constants.Constants;
 import org.throwable.ons.core.utils.UuidUtils;
 import org.throwable.protocol.model.DestinationMessagePair;
 import org.throwable.protocol.model.MessageBody;
+import org.throwable.protocol.support.converter.FireTransactionStatsConverter;
+import org.throwable.protocol.support.converter.LocalTransactionStatsConverter;
+import org.throwable.protocol.support.converter.SendStatsConverter;
 
 import java.util.List;
 
@@ -23,6 +26,12 @@ public final class RabbitmqMessagePropertiesConverter {
 
 	private static final MessagePropertiesConverter MESSAGE_PROPERTIES_CONVERTER = new DefaultMessagePropertiesConverter();
 	private static final DefaultConversionService CONVERSION_SERVICE = new DefaultConversionService();
+
+	static {
+		CONVERSION_SERVICE.addConverter(new FireTransactionStatsConverter());
+		CONVERSION_SERVICE.addConverter(new LocalTransactionStatsConverter());
+		CONVERSION_SERVICE.addConverter(new SendStatsConverter());
+	}
 
 	public AMQP.BasicProperties convertToBasicProperties(MessageProperties messageProperties) {
 		return MESSAGE_PROPERTIES_CONVERTER.fromMessageProperties(messageProperties, Constants.ENCODING);
