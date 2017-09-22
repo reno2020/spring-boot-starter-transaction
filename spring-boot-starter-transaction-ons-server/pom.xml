@@ -11,6 +11,10 @@
     <name>spring-boot-starter-transaction-ons</name>
     <dependencies>
 
+        <dependency>
+            <groupId>org.throwable</groupId>
+            <artifactId>spring-boot-starter-transaction-ons-protocol</artifactId>
+        </dependency>
 
     </dependencies>
     <build>

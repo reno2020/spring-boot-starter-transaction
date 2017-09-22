@@ -64,6 +64,12 @@
 
             <dependency>
                 <groupId>org.throwable</groupId>
+                <artifactId>spring-boot-starter-transaction-ons-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.throwable</groupId>
                 <artifactId>spring-boot-starter-transaction-ons-protocol</artifactId>
                 <version>${project.version}</version>
             </dependency>

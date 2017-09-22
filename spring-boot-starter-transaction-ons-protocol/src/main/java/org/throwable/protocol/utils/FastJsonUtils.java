@@ -16,35 +16,35 @@ import java.util.List;
  */
 public abstract class FastJsonUtils {
 
-	private static final SerializerFeature[] GENERATE_FEATURES;
+    private static final SerializerFeature[] GENERATE_FEATURES;
 
-	private static final Feature[] PARSE_FEATURES;
+    private static final Feature[] PARSE_FEATURES;
 
-	static {
-		List<SerializerFeature> generateFeatures = new ArrayList<>();
-		generateFeatures.add(SerializerFeature.WriteEnumUsingName);
-		generateFeatures.add(SerializerFeature.QuoteFieldNames);
-		generateFeatures.add(SerializerFeature.SkipTransientField);
-		generateFeatures.add(SerializerFeature.SortField);
-		generateFeatures.add(SerializerFeature.MapSortField);
-		GENERATE_FEATURES = generateFeatures.toArray(new SerializerFeature[generateFeatures.size()]);
+    static {
+        List<SerializerFeature> generateFeatures = new ArrayList<>();
+        generateFeatures.add(SerializerFeature.WriteEnumUsingName);
+        generateFeatures.add(SerializerFeature.QuoteFieldNames);
+        generateFeatures.add(SerializerFeature.SkipTransientField);
+        generateFeatures.add(SerializerFeature.SortField);
+        generateFeatures.add(SerializerFeature.MapSortField);
+        GENERATE_FEATURES = generateFeatures.toArray(new SerializerFeature[generateFeatures.size()]);
 
-		List<Feature> parseFeatures = new ArrayList<>();
-		parseFeatures.add(Feature.AutoCloseSource);
-		parseFeatures.add(Feature.InternFieldNames);
-		parseFeatures.add(Feature.UseBigDecimal);
-		parseFeatures.add(Feature.AllowUnQuotedFieldNames);
-		parseFeatures.add(Feature.AllowArbitraryCommas);
-		parseFeatures.add(Feature.SortFeidFastMatch);
-		parseFeatures.add(Feature.IgnoreNotMatch);
-		PARSE_FEATURES = parseFeatures.toArray(new Feature[parseFeatures.size()]);
-	}
+        List<Feature> parseFeatures = new ArrayList<>();
+        parseFeatures.add(Feature.AutoCloseSource);
+        parseFeatures.add(Feature.InternFieldNames);
+        parseFeatures.add(Feature.UseBigDecimal);
+        parseFeatures.add(Feature.AllowUnQuotedFieldNames);
+        parseFeatures.add(Feature.AllowArbitraryCommas);
+        parseFeatures.add(Feature.SortFeidFastMatch);
+        parseFeatures.add(Feature.IgnoreNotMatch);
+        PARSE_FEATURES = parseFeatures.toArray(new Feature[parseFeatures.size()]);
+    }
 
-	public static String toJsonString(Object value) {
-		return JSON.toJSONStringWithDateFormat(value, Constants.DETE_TIME_PATTERN, GENERATE_FEATURES);
-	}
+    public static String toJsonString(Object value) {
+        return JSON.toJSONStringWithDateFormat(value, Constants.DETE_TIME_PATTERN, GENERATE_FEATURES);
+    }
 
-	public static <T>T parseFromJsonString(String value,Class<T> clazz){
-		return JSON.parseObject(value,clazz, PARSE_FEATURES);
-	}
+    public static <T> T parseFromJsonString(String value, Class<T> clazz) {
+        return JSON.parseObject(value, clazz, PARSE_FEATURES);
+    }
 }
