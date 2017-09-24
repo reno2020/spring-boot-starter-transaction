@@ -33,9 +33,9 @@ public class TransactionCheckerListener extends AbstractRabbitmqSupport implemen
 
 	@Override
 	public void onMessage(Message message, Channel channel) throws Exception {
-		MessageBody messageBody = FastJsonUtils.parseFromJsonString(new String(message.getBody(), Constants.ENCODING),
-				MessageBody.class);
 		try {
+			MessageBody messageBody = FastJsonUtils.parseFromJsonString(new String(message.getBody(), Constants.ENCODING),
+					MessageBody.class);
 			String uniqueCode = CONVERTER.getAttributeValue(messageBody, Constants.UNIQUECODE_KEY);
 			String messageId = CONVERTER.getAttributeValue(messageBody, Constants.MESSAGEID_KEY);
 			Long transactionId = CONVERTER.getAttributeValue(messageBody, Constants.TRANSACTIONID_KEY, Long.class);

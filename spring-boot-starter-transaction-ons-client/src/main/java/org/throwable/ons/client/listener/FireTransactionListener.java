@@ -22,11 +22,11 @@ public class FireTransactionListener extends AbstractRabbitmqSupport implements 
 
 	@Override
 	public void onMessage(Message message, Channel channel) throws Exception {
-		MessageBody messageBody = FastJsonUtils.parseFromJsonString(new String(message.getBody(), Constants.ENCODING),
-				MessageBody.class);
 		String uniqueCode = null;
 		String transactionId = null;
 		try {
+			MessageBody messageBody = FastJsonUtils.parseFromJsonString(new String(message.getBody(), Constants.ENCODING),
+					MessageBody.class);
 			uniqueCode = CONVERTER.getAttributeValue(messageBody, Constants.UNIQUECODE_KEY);
 			transactionId = CONVERTER.getAttributeValue(messageBody, Constants.TRANSACTIONID_KEY);
 			if (LocalTransactionExecutionSynchronizer.existTransactionConsumer(uniqueCode)) {
