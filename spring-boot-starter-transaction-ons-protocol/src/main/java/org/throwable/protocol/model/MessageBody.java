@@ -26,6 +26,11 @@ public final class MessageBody {
 		return this;
 	}
 
+	public MessageBody setAttribute(String key, Object value) {
+		staticAttributes.put(key, value);
+		return this;
+	}
+
 	public Object getAttribute(String key) {
 		return staticAttributes.get(key);
 	}

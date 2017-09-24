@@ -1,5 +1,6 @@
 package org.throwable.ons.client.configuration;
 
+import org.springframework.amqp.core.AcknowledgeMode;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
@@ -215,8 +216,9 @@ public class OnsClientConfiguration implements SmartInitializingSingleton, Envir
 		declareRabbitmqQueues(queuesToDeclare);
 		processExchangeRoutingKeyForTransactionMessageTemplate(halfMessageRoutingKey, suffix);
 		CachingConnectionFactory cachingConnectionFactory = beanFactory.getBean("rabbitConnectionFactory", CachingConnectionFactory.class);
+		RabbitTemplate rabbitTemplate = beanFactory.getBean("clientTransactionRabbitTemplate", RabbitTemplate.class);
 		registerFireTransactionListenerBean(fireTransactionRoutingKey, cachingConnectionFactory);
-		registerTransactionCheckListenerBean(checkerRoutingKey, cachingConnectionFactory);
+		registerTransactionCheckListenerBean(checkerRoutingKey, halfMessageRoutingKey, rabbitTemplate, cachingConnectionFactory);
 	}
 
 	private void declareRabbitmqQueues(List<String> queuesToDeclare) {
@@ -244,6 +246,7 @@ public class OnsClientConfiguration implements SmartInitializingSingleton, Envir
 		container.setConcurrentConsumers(onsClientProperties.getFireTransactionListenerConcurrentConsumers());
 		container.setMaxConcurrentConsumers(onsClientProperties.getFireTransactionListenerMaxConcurrentConsumers());
 		container.setupMessageListener(new FireTransactionListener());
+		container.setAcknowledgeMode(AcknowledgeMode.MANUAL);
 		if (null != applicationEventPublisher) {
 			container.setApplicationEventPublisher(applicationEventPublisher);
 		}
@@ -251,14 +254,23 @@ public class OnsClientConfiguration implements SmartInitializingSingleton, Envir
 		beanFactory.getBean(ListenerEnum.FIRE_TRANSACTION_LISTENER.getValue(), SimpleMessageListenerContainer.class);
 	}
 
-	private void registerTransactionCheckListenerBean(String checkerRoutingKey, CachingConnectionFactory connectionFactory) {
+	private void registerTransactionCheckListenerBean(String checkerRoutingKey,
+													  String halfMessageRoutingKey,
+													  RabbitTemplate rabbitTemplate,
+													  CachingConnectionFactory connectionFactory) {
 		SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
 		container.setConnectionFactory(connectionFactory);
 		container.setQueueNames(checkerRoutingKey);
 		container.setAutoStartup(true);
+		container.setAcknowledgeMode(AcknowledgeMode.MANUAL);
 		container.setConcurrentConsumers(onsClientProperties.getTransactionCheckerListenerConcurrentConsumers());
 		container.setMaxConcurrentConsumers(onsClientProperties.getTransactionCheckerListenerMaxConcurrentConsumers());
-		container.setupMessageListener(new TransactionCheckerListener());
+		TransactionCheckerListener transactionCheckerListener = new TransactionCheckerListener();
+		transactionCheckerListener.setBeanFactory(beanFactory);
+		transactionCheckerListener.setConfirmTimeoutSeconds(onsClientProperties.getConfirmTimeoutSeconds());
+		transactionCheckerListener.setExchangeRoutingKey(halfMessageRoutingKey);
+		transactionCheckerListener.setRabbitTemplate(rabbitTemplate);
+		container.setupMessageListener(transactionCheckerListener);
 		if (null != applicationEventPublisher) {
 			container.setApplicationEventPublisher(applicationEventPublisher);
 		}

@@ -20,6 +20,10 @@ public class OnsClientProperties {
 	private static final Integer DEFAULT_CONCURRENT_CONSUMERS = 10;
 	private static final Integer DEFAULT_MAX_CONCURRENT_CONSUMERS = 20;
 
+	private static final Long DEFAULT_CONFIRM_TIMEOUT_SECONDS = 5L;
+	private static final Long DEFAULT_FIRE_TRANSACTION_TIMEOUT_SECONDS = 5L;
+	private static final Long DEFAULT_EXECUTE_TRANSACTION_TIMEOUT_SECONDS = 15L;
+
 	private String topicExchangeSuffix;
 
 	private Integer transactionThreadPoolCoreSize = DOUBLE_LOGIC_CPU_NUMBER;
@@ -31,6 +35,10 @@ public class OnsClientProperties {
 	private Integer fireTransactionListenerMaxConcurrentConsumers = DEFAULT_MAX_CONCURRENT_CONSUMERS;
 	private Integer transactionCheckerListenerConcurrentConsumers = DEFAULT_CONCURRENT_CONSUMERS;
 	private Integer transactionCheckerListenerMaxConcurrentConsumers = DEFAULT_MAX_CONCURRENT_CONSUMERS;
+
+	private Long confirmTimeoutSeconds = DEFAULT_CONFIRM_TIMEOUT_SECONDS;
+	private Long fireTransactionTimeoutSeconds = DEFAULT_FIRE_TRANSACTION_TIMEOUT_SECONDS;
+	private Long executeTransactionTimeoutSeconds = DEFAULT_EXECUTE_TRANSACTION_TIMEOUT_SECONDS;
 
 	public Integer getTransactionThreadPoolCoreSize() {
 		return transactionThreadPoolCoreSize;
@@ -102,5 +110,29 @@ public class OnsClientProperties {
 
 	public void setTransactionCheckerListenerMaxConcurrentConsumers(Integer transactionCheckerListenerMaxConcurrentConsumers) {
 		this.transactionCheckerListenerMaxConcurrentConsumers = transactionCheckerListenerMaxConcurrentConsumers;
+	}
+
+	public Long getConfirmTimeoutSeconds() {
+		return confirmTimeoutSeconds;
+	}
+
+	public void setConfirmTimeoutSeconds(Long confirmTimeoutSeconds) {
+		this.confirmTimeoutSeconds = confirmTimeoutSeconds;
+	}
+
+	public Long getFireTransactionTimeoutSeconds() {
+		return fireTransactionTimeoutSeconds;
+	}
+
+	public void setFireTransactionTimeoutSeconds(Long fireTransactionTimeoutSeconds) {
+		this.fireTransactionTimeoutSeconds = fireTransactionTimeoutSeconds;
+	}
+
+	public Long getExecuteTransactionTimeoutSeconds() {
+		return executeTransactionTimeoutSeconds;
+	}
+
+	public void setExecuteTransactionTimeoutSeconds(Long executeTransactionTimeoutSeconds) {
+		this.executeTransactionTimeoutSeconds = executeTransactionTimeoutSeconds;
 	}
 }
