@@ -41,7 +41,7 @@ public abstract class FastJsonUtils {
     }
 
     public static String toJsonString(Object value) {
-        return JSON.toJSONStringWithDateFormat(value, Constants.DETE_TIME_PATTERN, GENERATE_FEATURES);
+        return JSON.toJSONStringWithDateFormat(value, Constants.DATE_TIME_PATTERN, GENERATE_FEATURES);
     }
 
     public static <T> T parseFromJsonString(String value, Class<T> clazz) {

@@ -74,6 +74,12 @@
                 <version>${project.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.throwable</groupId>
+                <artifactId>spring-boot-starter-transaction-ons-orm</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

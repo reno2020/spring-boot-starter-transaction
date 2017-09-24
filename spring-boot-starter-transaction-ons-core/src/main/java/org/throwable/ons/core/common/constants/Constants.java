@@ -10,7 +10,7 @@ public interface Constants {
 
     String ENCODING = "UTF-8";
 
-    String DETE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
+    String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
     String QUEUE_KEY = "queue";
 
@@ -27,6 +27,8 @@ public interface Constants {
     String UNIQUECODE_KEY = "uniqueCode";
 
     String SENDSTATS_KEY = "sendStats";
+
+    String EXCHANGE_ROUTING_KEY_SUFFIX_KEY = "exchangeRoutingKeySuffix";
 
     String CHECKERCLASSNAME_KEY = "checkerClassName";
 

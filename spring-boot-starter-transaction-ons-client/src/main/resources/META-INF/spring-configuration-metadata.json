@@ -1,0 +1,54 @@
+{
+  "properties": [
+    {
+      "name": "ons.transaction.client.topic-exchange-suffix",
+      "type": "java.lang.String",
+      "sourceType": "org.throwable.ons.client.configuration.OnsClientProperties"
+    },
+    {
+      "name": "ons.transaction.client.transaction-thread-pool-core-size",
+      "type": "java.lang.Integer",
+      "sourceType": "org.throwable.ons.client.configuration.OnsClientProperties"
+    },
+    {
+      "name": "ons.transaction.client.transaction-thread-pool-max-size",
+      "type": "java.lang.Integer",
+      "sourceType": "org.throwable.ons.client.configuration.OnsClientProperties"
+    },
+    {
+      "name": "ons.transaction.client.transaction-thread-pool-queue-capacity",
+      "type": "java.lang.Integer",
+      "sourceType": "org.throwable.ons.client.configuration.OnsClientProperties"
+    },
+    {
+      "name": "ons.transaction.client.transaction-thread-pool-Keep-alive-seconds",
+      "type": "java.lang.Long",
+      "sourceType": "org.throwable.ons.client.configuration.OnsClientProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "ons.transaction.client.fire-transaction-listener-concurrent-consumers",
+      "type": "java.lang.Integer",
+      "sourceType": "org.throwable.ons.client.configuration.OnsClientProperties",
+      "defaultValue": 10
+    },
+    {
+      "name": "ons.transaction.client.fire-transaction-listener-max-concurrent-consumers",
+      "type": "java.lang.Integer",
+      "sourceType": "org.throwable.ons.client.configuration.OnsClientProperties",
+      "defaultValue": 20
+    },
+    {
+      "name": "ons.transaction.client.transaction-checker-listener-concurrent-consumers",
+      "type": "java.lang.Integer",
+      "sourceType": "org.throwable.ons.client.configuration.OnsClientProperties",
+      "defaultValue": 10
+    },
+    {
+      "name": "ons.transaction.client.transaction-checker-listener-max-concurrent-consumers",
+      "type": "java.lang.Integer",
+      "sourceType": "org.throwable.ons.client.configuration.OnsClientProperties",
+      "defaultValue": 20
+    }
+  ]
+}

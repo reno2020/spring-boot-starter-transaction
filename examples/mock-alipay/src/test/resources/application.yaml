@@ -1,0 +1,20 @@
+server:
+  port: 9099
+spring:
+  datasource:
+    platform: H2
+    schema: classpath:schema/schema.sql
+    data: classpath:data/data.sql
+    driver-class-name: org.h2.Driver
+  rabbitmq:
+    host: localhost
+    port: 5672
+    password: guest
+    username: guest
+doge-mapper:
+  basePackages: org.throwable.dao
+  configurationLocation: classpath:mybatis/mybatis_config.xml
+  mapperLocations: classpath:mappings/*.xml
+  typeAliasesPackage: org.throwable.entity
+  enablePaginationPlugin: true
+  enableSqlStatisticsPlugin: true

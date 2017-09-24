@@ -47,6 +47,8 @@ public class TransactionLog extends BaseEntity{
 
     @Column(value = "checker_class_name")
     private String checkerClassName;
+	@Column(value = "signature")
+    private String signature;
 
     public Long getTransactionId() {
         return transactionId;
@@ -159,4 +161,12 @@ public class TransactionLog extends BaseEntity{
     public void setCheckerClassName(String checkerClassName) {
         this.checkerClassName = checkerClassName;
     }
+
+	public String getSignature() {
+		return signature;
+	}
+
+	public void setSignature(String signature) {
+		this.signature = signature;
+	}
 }
